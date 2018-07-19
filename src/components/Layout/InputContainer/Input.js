@@ -5,12 +5,14 @@ class input extends Component {
     const formState = this.props.formState;
 
     {
-      /* validation: enable "get quote" button when below fields pass validation */
+      /* validation: enable "get quote" button when below fields pass validation 
+         ToDo: display more friendly message for the user
+      */
     }
     const isEnabled =
       formState.firstName.length > 0 &&
       formState.lastName.length > 0 &&
-      formState.amount > 200;
+      formState.amount >= 200;
 
     return (
       <div className="rateForm col-12 col-md-6">
@@ -138,6 +140,7 @@ class input extends Component {
                   type="text"
                   className="form-control"
                   value={formState.amount}
+                  placeholder="Minimum 200"
                   onChange={this.props.onFormInputChange}
                 />
               </div>

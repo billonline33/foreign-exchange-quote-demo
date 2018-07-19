@@ -35,7 +35,13 @@ export default (state = initialState, action) => {
 
     case RESET_QUOTE: {
       console.log("REST-QUOTE 002 fired");
-      return { ...state, newQuote: {} };
+      return {
+        ...state,
+        fromCurrency: DEFAULT_FROM_CURRENCY,
+        toCurrency: DEFAULT_TO_CURRENCY,
+        amount: DEFAULT_AMOUNT,
+        newQuote: {}
+      };
     }
 
     case REQUEST_FAILED: {

@@ -24,7 +24,7 @@ class App extends Component {
       phoneNumber: "",
       fromCurrency: DEFAULT_FROM_CURRENCY,
       toCurrency: DEFAULT_TO_CURRENCY,
-      amount: DEFAULT_AMOUNT
+      amount: ""
     };
 
     this.state = this.initialState;

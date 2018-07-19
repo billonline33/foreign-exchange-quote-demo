@@ -8,7 +8,7 @@ class Quote extends Component {
 
   render() {
     console.log("this.props.fromCurrency=", this.props.fromCurrency);
-    console.log("this.props.customerAmount", this.props.customerAmount);
+    console.log("this.props.amount", this.props.amount);
     return (
       <div className="rate col-12 col-md-6">
         <h1>Quick Quote</h1>
@@ -20,10 +20,12 @@ class Quote extends Component {
             <h4>
               {this.props.fromCurrency}{" "}
               <span>
-                {new Intl.NumberFormat("en-GB", {
-                  style: "currency",
-                  currency: this.props.fromCurrency
-                }).format(this.props.amount)}
+                {this.props.amount == 0
+                  ? ""
+                  : new Intl.NumberFormat("en-GB", {
+                      style: "currency",
+                      currency: this.props.fromCurrency
+                    }).format(this.props.amount)}
               </span>
             </h4>
             <p>To</p>
