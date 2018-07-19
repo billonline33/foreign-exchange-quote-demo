@@ -1,66 +1,75 @@
 import React, { Component } from "react";
 
 class Input extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    const formState = this.props.formState;
+    console.log("formState003", formState);
     return (
       <div className="rateForm col-12 col-md-6">
         <h1>Quick Quote</h1>
-
-        <form action="" className="rateForm_form">
+        <form className="rateForm_form">
           <div className="rateForm_form_top">
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label for="">
+                <label>
                   First Name <span>*</span>
                 </label>
                 <input
+                  name="firstName"
                   type="text"
                   className="form-control"
-                  id=""
+                  value={formState.firstName}
+                  onChange={this.props.onFormInputChange}
                   placeholder="First Name"
                 />
               </div>
               <div className="form-group col-md-6">
-                <label for="">
+                <label>
                   Last Name <span>*</span>
                 </label>
                 <input
+                  name="lastName"
                   type="text"
                   className="form-control"
-                  id=""
+                  value={formState.lastName}
+                  onChange={this.props.onFormInputChange}
                   placeholder="Last Name"
                 />
               </div>
             </div>
             <div className="form-group">
-              <label for="">Email</label>
+              <label>Email</label>
               <input
+                name="email"
                 type="email"
-                class="form-control"
-                id=""
+                className="form-control"
+                value={formState.email}
+                onChange={this.props.onFormInputChange}
                 placeholder="Email"
               />
             </div>
-            <div class="form-row phone-number">
-              <div class="form-group col-4 col-sm-3 col-md-3 col-lg-2">
-                <select className="form-control" id="">
+            <div className="form-row phone-number">
+              <div className="form-group col-4 col-sm-3 col-md-3 col-lg-2">
+                <select
+                  className="form-control"
+                  name="countryCode"
+                  onChange={this.props.onFormInputChange}
+                >
                   <option value="+61" selected>
                     +61
                   </option>
                   <option value="+61">+61</option>
-                  <option value="+61">+61</option>
-                  <option value="+61">+61</option>
+                  <option value="+91">+91</option>
+                  <option value="+86">+86</option>
                 </select>
               </div>
               <div className="form-group col-8 col-sm-9 col-md-9 col-lg-10">
                 <input
+                  name="phoneNumber"
                   type="text"
                   className="form-control"
-                  id=""
+                  value={formState.phoneNumber}
+                  onChange={this.props.onFormInputChange}
                   placeholder="Enter your phone"
                 />
               </div>
@@ -70,44 +79,62 @@ class Input extends Component {
           <div className="rateForm_form__bottom">
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label for="">
+                <label>
                   From Currency <span>*</span>
                 </label>
-                <select className="form-control" id="">
-                  <option value="aud" selected>
+                <select
+                  className="form-control"
+                  name="fromCurrency"
+                  onChange={this.props.onFormInputChange}
+                >
+                  <option value="USD" selected>
+                    United States Dollar (USD)
+                  </option>
+                  <option value="EUR">Euro (EUR)</option>
+                  <option value="GBP">British Pound (GBP)</option>
+                  <option value="AUD" selected>
                     Australian Dollar (AUD)
                   </option>
-                  <option value="aud">Australian Dollar (AUD)</option>
                 </select>
               </div>
               <div className="form-group col-md-6">
-                <label for="">
+                <label>
                   To Currency <span>*</span>
                 </label>
-                <select className="form-control" id="">
-                  <option value="usd" selected>
+                <select
+                  className="form-control"
+                  name="toCurrency"
+                  onChange={this.props.onFormInputChange}
+                >
+                  <option value="USD" selected>
                     United States Dollar (USD)
                   </option>
-                  <option value="usd">United States Dollar (USD)</option>
+                  <option value="EUR">Euro (EUR)</option>
+                  <option value="GBP">British Pound (GBP)</option>
+                  <option value="AUD">Australian Dollar (AUD)</option>
                 </select>
               </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label for="">
+                <label>
                   Amount <span>*</span>
                 </label>
                 <input
+                  name="amount"
                   type="text"
                   className="form-control"
-                  id=""
-                  value="25000"
-                  placeholder="25,000.00"
+                  value={formState.amount}
+                  onChange={this.props.onFormInputChange}
                 />
               </div>
             </div>
             <div className="form-group text-center">
-              <button type="submit" className="btn">
+              <button
+                type="submit"
+                className="btn"
+                onClick={this.props.onGetQuoteClick}
+              >
                 Get Quote
               </button>
             </div>
