@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "./App.css";
-import Input from "./components/Layout/InputContainer/input";
-import Quote from "./components/Layout/QuoteContainer/quote";
+import Input from "./components/Layout/InputContainer/Input";
+import Quote from "./components/Layout/QuoteContainer/Quote";
 import { loadQuote, resetQuote } from "./reducers/inputReducer";
 
 import {
