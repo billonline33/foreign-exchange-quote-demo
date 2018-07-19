@@ -3,6 +3,15 @@ import React, { Component } from "react";
 class input extends Component {
   render() {
     const formState = this.props.formState;
+
+    {
+      /* validation: enable "get quote" button when below fields pass validation */
+    }
+    const isEnabled =
+      formState.firstName.length > 0 &&
+      formState.lastName.length > 0 &&
+      formState.amount > 200;
+
     return (
       <div className="rateForm col-12 col-md-6">
         <h1>Quick Quote</h1>
@@ -93,6 +102,7 @@ class input extends Component {
                   </option>
                   <option value="EUR">Euro (EUR)</option>
                   <option value="GBP">British Pound (GBP)</option>
+                  <option value="JPY">Japanese Yen (JPY)</option>
                   <option value="AUD" selected>
                     Australian Dollar (AUD)
                   </option>
@@ -113,6 +123,7 @@ class input extends Component {
                   </option>
                   <option value="EUR">Euro (EUR)</option>
                   <option value="GBP">British Pound (GBP)</option>
+                  <option value="JPY">Japanese Yen (JPY)</option>
                   <option value="AUD">Australian Dollar (AUD)</option>
                 </select>
               </div>
@@ -135,6 +146,7 @@ class input extends Component {
               <button
                 type="submit"
                 className="btn"
+                disabled={!isEnabled}
                 onClick={this.props.onGetQuoteClick}
               >
                 Get Quote

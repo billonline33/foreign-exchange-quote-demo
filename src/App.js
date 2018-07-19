@@ -71,15 +71,8 @@ class App extends Component {
           onGetQuoteClick={this.handleGetQuoteClick}
           onFormInputChange={this.handleFormInputChange}
         />
-        {/* This is the right panel of the screen - display quote
-            using callback to pass state between components as props
-        */}
-        <Quote
-          fromCurrency={this.state.fromCurrency}
-          toCurrency={this.state.toCurrency}
-          amount={this.state.amount}
-          onStartNewQuoteClick={this.resetForm}
-        />
+        {/* This is the right panel of the screen - display quote */}
+        <Quote onStartNewQuoteClick={this.resetForm} />
       </div>
     );
   }

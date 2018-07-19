@@ -11,6 +11,9 @@ const REQUEST_FAILED = "inputReducer/REQUEST_FAILED";
 const RESET_QUOTE = "inputReducer/RESET_QUOTE";
 
 const initialState = {
+  fromCurrency: DEFAULT_FROM_CURRENCY,
+  toCurrency: DEFAULT_TO_CURRENCY,
+  amount: DEFAULT_AMOUNT,
   newQuote: {}
 };
 
@@ -24,6 +27,9 @@ export default (state = initialState, action) => {
     case GET_QUOTE:
       return {
         ...state,
+        fromCurrency: action.fromCurrency,
+        toCurrency: action.toCurrency,
+        amount: action.amount,
         newQuote: action.newQuote
       };
 
@@ -55,10 +61,12 @@ export const loadQuote = (fromCurrency, toCurrency, amount) => {
   return dispatch => {
     getQuoteFromWebService(fromCurrency, toCurrency, amount)
       .then(response => {
-        console.log("0000", response.data.CustomerRate);
         dispatch({
           type: GET_QUOTE,
-          newQuote: response.data
+          newQuote: response.data,
+          fromCurrency,
+          toCurrency,
+          amount
         });
       })
       .catch(error => {
