@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import "./App.css";
 import Input from "./components/Layout/InputContainer/input";
 import Quote from "./components/Layout/QuoteContainer/quote";
+import { loadQuote, resetQuote } from "./reducers/inputReducer";
 
 import {
   DEFAULT_COUNTRY_CODE,
@@ -13,7 +16,7 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       firstName: "",
       lastName: "",
       email: "",
@@ -24,10 +27,14 @@ class App extends Component {
       amount: DEFAULT_AMOUNT
     };
 
+    this.state = this.initialState;
+
     this.handleFormInputChange = this.handleFormInputChange.bind(this);
     this.handleGetQuoteClick = this.handleGetQuoteClick.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
+  /* whenever an input box is changed, update the state value, note we use [name] for all input here  */
   handleFormInputChange(event) {
     const target = event.target;
     const value = target.value;
@@ -38,24 +45,51 @@ class App extends Component {
     });
   }
 
+  /* call reducer */
   handleGetQuoteClick(e) {
     e.preventDefault();
-    console.log("state000=", this.state);
+
+    this.props.loadQuote(
+      this.state.fromCurrency,
+      this.state.toCurrency,
+      this.state.amount
+    );
+  }
+
+  /* Callback - when start new quote button is clicked, clear both left panel and right panel data*/
+  resetForm() {
+    this.setState(this.initialState);
+    this.props.resetQuote();
   }
 
   render() {
-    console.log("state001=", this.state);
     return (
       <div className="capture container row">
+        {/* This is left panel of the screen - capture information */}
         <Input
           formState={this.state}
           onGetQuoteClick={this.handleGetQuoteClick}
           onFormInputChange={this.handleFormInputChange}
         />
-        <Quote />
+        {/* This is the right panel of the screen - display quote
+            using callback to pass state between components as props
+        */}
+        <Quote
+          fromCurrency={this.state.fromCurrency}
+          toCurrency={this.state.toCurrency}
+          amount={this.state.amount}
+          onStartNewQuoteClick={this.resetForm}
+        />
       </div>
     );
   }
 }
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ loadQuote, resetQuote }, dispatch);
+
+App = connect(
+  null,
+  mapDispatchToProps
+)(App);
 export default App;

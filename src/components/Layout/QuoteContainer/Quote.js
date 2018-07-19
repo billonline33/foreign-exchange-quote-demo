@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { resetQuote } from "../../../reducers/inputReducer";
 
 class Quote extends Component {
   constructor(props) {
@@ -12,17 +16,22 @@ class Quote extends Component {
         <div className="rate_content">
           <div className="rate_container">
             <p>OFX Customer Rate:</p>
-            <h3>0.7618</h3>
+            <h3>{this.props.customerRate}&nbsp;</h3>
             <p>From</p>
             <h4>
-              AUD <span>25,000.00</span>
+              {this.props.fromCurrency} <span>{this.props.amount}</span>
             </h4>
             <p>To</p>
             <h4>
-              USD <span>19,045.00</span>
+              {this.props.toCurrency}&nbsp;
+              <span>{this.props.customerAmount}</span>
             </h4>
             <div className="text-center">
-              <button type="submit" className="btn ">
+              <button
+                type="submit"
+                className="btn "
+                onClick={this.props.onStartNewQuoteClick}
+              >
                 Start New Quote
               </button>
             </div>
@@ -32,5 +41,15 @@ class Quote extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  customerRate: state.inputReducer.newQuote.CustomerRate,
+  customerAmount: state.inputReducer.newQuote.CustomerAmount
+});
+
+Quote = connect(
+  mapStateToProps,
+  null
+)(Quote);
 
 export default Quote;

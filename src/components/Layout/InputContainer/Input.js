@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-class Input extends Component {
+class input extends Component {
   render() {
     const formState = this.props.formState;
-    console.log("formState003", formState);
     return (
       <div className="rateForm col-12 col-md-6">
         <h1>Quick Quote</h1>
@@ -55,6 +54,7 @@ class Input extends Component {
                   name="countryCode"
                   onChange={this.props.onFormInputChange}
                 >
+                  {/* hard code value to simplify the issue */}
                   <option value="+61" selected>
                     +61
                   </option>
@@ -87,6 +87,7 @@ class Input extends Component {
                   name="fromCurrency"
                   onChange={this.props.onFormInputChange}
                 >
+                  {/* hard code value to simplify the issue */}
                   <option value="USD" selected>
                     United States Dollar (USD)
                   </option>
@@ -106,6 +107,7 @@ class Input extends Component {
                   name="toCurrency"
                   onChange={this.props.onFormInputChange}
                 >
+                  {/* hard code value to simplify the issue */}
                   <option value="USD" selected>
                     United States Dollar (USD)
                   </option>
@@ -145,4 +147,4 @@ class Input extends Component {
   }
 }
 
-export default Input;
+export default input;
